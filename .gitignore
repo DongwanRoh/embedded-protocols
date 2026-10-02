@@ -1,0 +1,42 @@
+# C / C++ & Embedded Compilers / IDEs
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+*.map
+*.d
+*.axf
+*.lst
+build/
+Debug/
+Release/
+cmake-build-*/
+.pio/
+.vscode/
+.idea/
+
+# Keil / IAR / STM32CubeIDE
+*.uvopt*
+*.uvproj*
+*.dep
+*.bak
+*.browse
+*.pbi
+*.pbd
+*.ewd
+*.ewp
+*.eww
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# OS / Temporary
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
