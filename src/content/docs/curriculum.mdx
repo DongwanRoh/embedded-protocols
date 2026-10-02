@@ -25,27 +25,47 @@ import { Card, CardGrid, Steps, Tabs, TabItem } from '@astrojs/starlight/compone
 
 ## 🛒 추천 장비 & 하드웨어
 
+### 🔗 장비 구매 사이트 모음
+
+| 사이트 | 특징 | 링크 |
+| :--- | :--- | :--- |
+| **디바이스마트 (DeviceMart)** | 국내 최대 전자부품 쇼핑몰. MCU 보드, 센서, 모듈 종류 풍부. 당일/익일 배송. | [devicemart.co.kr](https://www.devicemart.co.kr/) |
+| **엘레파츠 (Eleparts)** | 아두이노/STM32/ESP32 보드 및 센서 모듈 전문. 튜토리얼 자료 풍부. | [eleparts.co.kr](https://www.eleparts.co.kr/) |
+| **아이씨뱅큐 (IC Banq)** | 반도체/전자부품 전문. Nucleo 보드, IC 칩, 커넥터 등 정품 부품. | [icbanq.com](https://www.icbanq.com/) |
+| **메카솔루션 (MecaSolution)** | 아두이노/라즈베리파이/로봇 부품 전문. 입문자 키트 다양. | [mechasolution.com](https://mechasolution.com/) |
+| **네이버 스마트스토어** | 각종 센서/모듈 최저가 검색. "STM32 Nucleo", "SHT31 모듈" 등 검색. | [smartstore.naver.com](https://smartstore.naver.com/) |
+| **쿠팡 (Coupang)** | 로켓배송 가능한 전자부품/센서 모듈. 빠른 배송이 장점. | [coupang.com](https://www.coupang.com/) |
+| **AliExpress (알리익스프레스)** | 해외 직구 최저가. 배송 7~15일 소요되지만 가격이 1/2~1/3 수준. | [aliexpress.com](https://www.aliexpress.com/) |
+| **Mouser Electronics** | 글로벌 정품 반도체/부품 유통. ST 공식 Nucleo 보드 구매 가능. | [mouser.kr](https://www.mouser.kr/) |
+| **Digikey (디지키)** | Mouser와 함께 세계 최대 전자부품 유통사. 데이터시트 검색 우수. | [digikey.kr](https://www.digikey.kr/) |
+
+:::tip[구매 팁]
+- **급하게 필요할 때**: 디바이스마트, 엘레파츠, 쿠팡 (국내 당일~익일 배송)
+- **최저가로 구매할 때**: AliExpress (해외 직구, 7~15일 소요)
+- **정품/데이터시트가 중요할 때**: Mouser, Digikey (ST/TI/NXP 공식 유통)
+:::
+
 ### 필수 장비 (전 단계 공통)
 
-| 장비 | 추천 제품 | 예상 가격 | 용도 |
+| 장비 | 추천 제품 | 예상 가격 | 구매 검색 키워드 |
 | :--- | :--- | :---: | :--- |
-| **MCU 개발 보드** | **STM32 Nucleo-F446RE** | ₩15,000~25,000 | ARM Cortex-M4 기반 핵심 학습 보드 |
-| **USB-시리얼 변환** | FT232RL 또는 CP2102 | ₩3,000~5,000 | PC ↔ MCU UART 통신 |
-| **브레드보드 + 점퍼선** | 830홀 + M-M/M-F 세트 | ₩3,000~5,000 | 배선 및 프로토타이핑 |
-| **LED + 저항 + 스위치** | 기본 부품 키트 | ₩2,000~3,000 | GPIO 실습 |
+| **MCU 개발 보드** | **STM32 Nucleo-F446RE** | ₩15,000~25,000 | [디바이스마트 검색](https://www.devicemart.co.kr/search?keyword=nucleo+f446re) |
+| **USB-시리얼 변환** | FT232RL 또는 CP2102 | ₩3,000~5,000 | [디바이스마트 검색](https://www.devicemart.co.kr/search?keyword=CP2102) |
+| **브레드보드 + 점퍼선** | 830홀 + M-M/M-F 세트 | ₩3,000~5,000 | [디바이스마트 검색](https://www.devicemart.co.kr/search?keyword=%EB%B8%8C%EB%A0%88%EB%93%9C%EB%B3%B4%EB%93%9C+%EC%A0%90%ED%8D%BC%EC%84%A0) |
+| **LED + 저항 + 스위치** | 기본 부품 키트 | ₩2,000~3,000 | [디바이스마트 검색](https://www.devicemart.co.kr/search?keyword=%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8+%EB%B6%80%ED%92%88+%ED%82%A4%ED%8A%B8) |
 
 ### Phase별 추가 장비
 
-| Phase | 추가 장비 | 추천 제품 | 예상 가격 |
-| :---: | :--- | :--- | :---: |
-| **1** | 서보모터 | SG90 마이크로 서보 | ₩2,000 |
-| **2** | I2C 센서 | SHT31(온습도) 또는 MPU6050(가속도/자이로) | ₩3,000~5,000 |
-| **2** | OLED 디스플레이 | SSD1306 0.96" 128×64 | ₩3,000~5,000 |
-| **2** | SPI Flash | W25Q64(8MB NOR Flash) 모듈 | ₩2,000~3,000 |
-| **2** | 로직 아날라이저 | Saleae Logic Clone (8ch) | ₩10,000~20,000 |
-| **3** | CAN 트랜시버 | MCP2551 또는 SN65HVD230 | ₩3,000~5,000 |
-| **3** | BLE/Wi-Fi 보드 | **ESP32-DevKitC** | ₩8,000~15,000 |
-| **3** | Ethernet 모듈 | W5500 이더넷 모듈 | ₩5,000~10,000 |
+| Phase | 추가 장비 | 추천 제품 | 예상 가격 | 구매 링크 |
+| :---: | :--- | :--- | :---: | :--- |
+| **1** | 서보모터 | SG90 마이크로 서보 | ₩2,000 | [디바이스마트](https://www.devicemart.co.kr/search?keyword=SG90) |
+| **2** | I2C 센서 | SHT31 또는 MPU6050 | ₩3,000~5,000 | [엘레파츠](https://www.eleparts.co.kr/goods/search?search_text=SHT31) |
+| **2** | OLED 디스플레이 | SSD1306 0.96" 128×64 | ₩3,000~5,000 | [디바이스마트](https://www.devicemart.co.kr/search?keyword=SSD1306+OLED) |
+| **2** | SPI Flash | W25Q64(8MB) 모듈 | ₩2,000~3,000 | [AliExpress](https://www.aliexpress.com/w/wholesale-W25Q64-module.html) |
+| **2** | 로직 아날라이저 | Saleae Logic Clone (8ch) | ₩10,000~20,000 | [AliExpress](https://www.aliexpress.com/w/wholesale-logic-analyzer-24mhz.html) |
+| **3** | CAN 트랜시버 | MCP2551 / SN65HVD230 | ₩3,000~5,000 | [디바이스마트](https://www.devicemart.co.kr/search?keyword=CAN+%ED%8A%B8%EB%9E%9C%EC%8B%9C%EB%B2%84) |
+| **3** | BLE/Wi-Fi 보드 | **ESP32-DevKitC** | ₩8,000~15,000 | [엘레파츠](https://www.eleparts.co.kr/goods/search?search_text=ESP32+DevKitC) |
+| **3** | Ethernet 모듈 | W5500 이더넷 모듈 | ₩5,000~10,000 | [디바이스마트](https://www.devicemart.co.kr/search?keyword=W5500) |
 
 :::tip[가성비 시작 세트 ≈ ₩30,000~40,000]
 STM32 Nucleo-F446RE + CP2102 USB-UART + 브레드보드 + SHT31 센서 + SSD1306 OLED로 Phase 1~2 전체를 커버할 수 있습니다.
