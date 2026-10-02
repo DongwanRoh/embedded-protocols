@@ -11,6 +11,12 @@ export default defineConfig({
       },
       sidebar: [
         {
+          label: '📋 커리큘럼 & 로드맵',
+          items: [
+            { label: '마스터 커리큘럼 (전체 계획서)', slug: 'curriculum' },
+          ],
+        },
+        {
           label: '📚 프로토콜 이론 분석',
           autogenerate: { directory: 'theory' },
         },

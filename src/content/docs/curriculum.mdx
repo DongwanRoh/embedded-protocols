@@ -1,0 +1,186 @@
+---
+title: 📋 마스터 커리큘럼 (로드맵)
+description: 기초(GPIO, UART) → 중급(I2C, SPI, DMA) → 고급(CAN, BLE, RTOS) 26주 학습 계획서
+sidebar:
+  order: 0
+---
+
+import { Card, CardGrid, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+## 🎯 전체 로드맵
+
+<CardGrid stagger>
+  <Card title="🟢 Phase 1 — 기초 통신 (4~6주)" icon="pencil">
+    GPIO 입출력, UART 시리얼 통신(링버퍼/DMA), PWM & 타이머를 마스터합니다. MCU 아키텍처의 기본기를 확실하게 다집니다.
+  </Card>
+  <Card title="🟡 Phase 2 — 중급 통신 (6~8주)" icon="seti:html">
+    I2C 센서 인터페이스, SPI Flash 메모리 제어, 인터럽트/DMA 심화를 통해 복수의 디바이스를 동시에 다루는 능력을 키웁니다.
+  </Card>
+  <Card title="🔴 Phase 3 — 고급 통신 (8~12주)" icon="rocket">
+    CAN 버스(차량/산업용), BLE/Wi-Fi 무선 IoT, Ethernet TCP/IP, FreeRTOS 멀티태스킹, USB를 경험합니다.
+  </Card>
+</CardGrid>
+
+---
+
+## 🛒 추천 장비 & 하드웨어
+
+### 필수 장비 (전 단계 공통)
+
+| 장비 | 추천 제품 | 예상 가격 | 용도 |
+| :--- | :--- | :---: | :--- |
+| **MCU 개발 보드** | **STM32 Nucleo-F446RE** | ₩15,000~25,000 | ARM Cortex-M4 기반 핵심 학습 보드 |
+| **USB-시리얼 변환** | FT232RL 또는 CP2102 | ₩3,000~5,000 | PC ↔ MCU UART 통신 |
+| **브레드보드 + 점퍼선** | 830홀 + M-M/M-F 세트 | ₩3,000~5,000 | 배선 및 프로토타이핑 |
+| **LED + 저항 + 스위치** | 기본 부품 키트 | ₩2,000~3,000 | GPIO 실습 |
+
+### Phase별 추가 장비
+
+| Phase | 추가 장비 | 추천 제품 | 예상 가격 |
+| :---: | :--- | :--- | :---: |
+| **1** | 서보모터 | SG90 마이크로 서보 | ₩2,000 |
+| **2** | I2C 센서 | SHT31(온습도) 또는 MPU6050(가속도/자이로) | ₩3,000~5,000 |
+| **2** | OLED 디스플레이 | SSD1306 0.96" 128×64 | ₩3,000~5,000 |
+| **2** | SPI Flash | W25Q64(8MB NOR Flash) 모듈 | ₩2,000~3,000 |
+| **2** | 로직 아날라이저 | Saleae Logic Clone (8ch) | ₩10,000~20,000 |
+| **3** | CAN 트랜시버 | MCP2551 또는 SN65HVD230 | ₩3,000~5,000 |
+| **3** | BLE/Wi-Fi 보드 | **ESP32-DevKitC** | ₩8,000~15,000 |
+| **3** | Ethernet 모듈 | W5500 이더넷 모듈 | ₩5,000~10,000 |
+
+:::tip[가성비 시작 세트 ≈ ₩30,000~40,000]
+STM32 Nucleo-F446RE + CP2102 USB-UART + 브레드보드 + SHT31 센서 + SSD1306 OLED로 Phase 1~2 전체를 커버할 수 있습니다.
+:::
+
+---
+
+## 🟢 Phase 1: 기초 통신 (4~6주)
+
+### Week 1~2: 디지털 입출력 & 시리얼 기초 이론
+
+**이론 체크리스트:**
+- MCU 아키텍처 기초 (CPU, 클록 트리, GPIO 레지스터, AHB/APB 버스)
+- 디지털 출력(Push-Pull, Open-Drain), 디지털 입력(Pull-up/Pull-down/Floating)
+- 시리얼 vs 패러럴, 동기 vs 비동기, 전이중 vs 반이중
+- TTL / RS-232 / RS-485 전압 레벨 비교
+
+**실습 과제:**
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 1-1 | LED Blink (GPIO 출력) | ⭐ | Nucleo 내장 LED |
+| 1-2 | 버튼 + LED (GPIO 입력 + 디바운싱) | ⭐ | 택트 스위치 + LED |
+| 1-3 | 외부 인터럽트(EXTI) 버튼 감지 | ⭐⭐ | 택트 스위치 |
+
+### Week 3~4: UART 통신 마스터
+
+**이론 체크리스트:**
+- UART 프레임 포맷 (Start, Data 7/8bit, Parity N/E/O, Stop 1/2bit)
+- 보드레이트 계산, 오버샘플링 16x/8x
+- RTS/CTS 하드웨어 흐름 제어
+- 수신 아키텍처: Polling → Interrupt+링버퍼 → DMA+IDLE Line
+
+**실습 과제:**
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 1-4 | UART 에코 서버 (Polling 방식) | ⭐ | Nucleo + USB-UART + PuTTY |
+| 1-5 | printf → UART 리다이렉션 | ⭐⭐ | Nucleo + USB-UART |
+| 1-6 | 인터럽트 + 링버퍼(Ring Buffer) 수신 | ⭐⭐⭐ | Nucleo + USB-UART |
+| 1-7 | DMA + IDLE Line 가변 길이 수신 | ⭐⭐⭐ | Nucleo + USB-UART |
+
+### Week 5~6: PWM & 타이머
+
+**실습 과제:**
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 1-8 | LED 밝기 PWM 제어 (페이드 인/아웃) | ⭐ | Nucleo 내장 LED |
+| 1-9 | 서보모터 50Hz PWM 각도 제어 | ⭐⭐ | SG90 서보모터 |
+| 1-10 | UART 명령 → 서보 각도 실시간 제어 | ⭐⭐ | 서보 + USB-UART |
+
+---
+
+## 🟡 Phase 2: 중급 통신 (6~8주)
+
+### Week 7~9: I2C 프로토콜 & 센서
+
+**실습 과제:**
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 2-1 | I2C 버스 스캐너 (0x08~0x77 주소 탐색) | ⭐⭐ | Nucleo + I2C 센서/OLED |
+| 2-2 | SHT31 온습도 센서 레지스터 Read/Write | ⭐⭐ | Nucleo + SHT31 |
+| 2-3 | SSD1306 OLED 디스플레이 드라이버 | ⭐⭐⭐ | Nucleo + OLED |
+| 2-4 | 센서 + OLED 통합 미니 대시보드 | ⭐⭐⭐ | 통합 장비 |
+
+### Week 10~12: SPI 프로토콜 & 고속 디바이스
+
+**실습 과제:**
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 2-5 | W25Q64 Flash JEDEC ID 읽기 (0x9F) | ⭐⭐ | Nucleo + W25Q64 |
+| 2-6 | Flash Read/Write/Erase 전체 사이클 | ⭐⭐⭐ | Nucleo + W25Q64 |
+| 2-7 | SPI OLED vs I2C OLED 속도 비교 | ⭐⭐⭐ | Nucleo + SPI OLED |
+
+### Week 13~14: 인터럽트, DMA, 타이머 심화
+
+**실습 과제:**
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 2-8 | ADC + DMA 연속 수집 → UART 스트리밍 | ⭐⭐⭐ | Nucleo + 가변저항 |
+| 2-9 | DMA 순환 수신 + STX/ETX/CRC 파싱 엔진 | ⭐⭐⭐⭐ | Nucleo + USB-UART |
+| 2-10 | 로직 아날라이저 I2C/SPI 파형 디코딩 | ⭐⭐ | 로직 아날라이저 + PulseView |
+
+---
+
+## 🔴 Phase 3: 고급 통신 (8~12주)
+
+### Week 15~17: CAN 버스 (차량/산업용)
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 3-1 | CAN 루프백 테스트 (내부 모드) | ⭐⭐ | Nucleo 내장 bxCAN |
+| 3-2 | 2개 보드 CAN 통신 (버튼 → LED) | ⭐⭐⭐ | Nucleo ×2 + CAN 트랜시버 ×2 |
+| 3-3 | CAN 수신 필터(Acceptance Filter) 설정 | ⭐⭐⭐ | 위 장비 |
+| 3-4 | Python CAN 모니터링 (python-can) | ⭐⭐⭐ | PC + USB-CAN 어댑터 |
+
+### Week 18~20: BLE & Wi-Fi IoT
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 3-5 | ESP32 BLE Peripheral (센서 Notify) | ⭐⭐⭐ | ESP32 + SHT31 |
+| 3-6 | 스마트폰 BLE 연동 (nRF Connect) | ⭐⭐⭐ | ESP32 + 스마트폰 |
+| 3-7 | ESP32 Wi-Fi + MQTT Pub/Sub | ⭐⭐⭐⭐ | ESP32 + Wi-Fi 공유기 |
+| 3-8 | STM32 → ESP32 UART 브릿지 → 클라우드 | ⭐⭐⭐⭐ | Nucleo + ESP32 |
+
+### Week 21~23: Ethernet & TCP/IP
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 3-9 | W5500 TCP Echo Server | ⭐⭐⭐ | Nucleo + W5500 |
+| 3-10 | LwIP 기반 HTTP 웹 서버 (센서 대시보드) | ⭐⭐⭐⭐ | Nucleo + LAN8742A |
+| 3-11 | MQTT over Ethernet | ⭐⭐⭐⭐ | 위 장비 |
+
+### Week 24~26: RTOS & USB (최종 통합)
+
+| # | 실습 내용 | 난이도 | 장비 |
+| :---: | :--- | :---: | :--- |
+| 3-12 | FreeRTOS 멀티태스킹 (센서+OLED+UART) | ⭐⭐⭐⭐ | Nucleo + 센서 + OLED |
+| 3-13 | RTOS Queue 태스크 간 데이터 전달 | ⭐⭐⭐⭐ | 위 장비 |
+| 3-14 | USB CDC VCP (가상 COM 포트) | ⭐⭐⭐⭐ | Nucleo USB 포트 |
+| 3-15 | **최종 통합**: RTOS + I2C + SPI + CAN/BLE + OLED | ⭐⭐⭐⭐⭐ | 전체 장비 |
+
+---
+
+## 🧰 개발 환경 설정
+
+| 도구 | 용도 | 비고 |
+| :--- | :--- | :--- |
+| **STM32CubeIDE** (무료) | STM32 코드 작성, 빌드, 디버깅 | 필수 설치 |
+| **Arduino IDE 2.x** | ESP32 / Arduino 프로토타이핑 | 라이브러리 풍부 |
+| **PlatformIO** (VS Code) | 통합 빌드 환경 | 고급 추천 |
+| **PuTTY / Tera Term** | UART 시리얼 모니터 | Windows용 |
+| **PulseView + Sigrok** | 로직 아날라이저 SW | 오픈소스, 무료 |
+| **Wireshark** | Ethernet/CAN 패킷 분석 | 무료 |
