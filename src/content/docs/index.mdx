@@ -1,0 +1,38 @@
+---
+title: 🔌 Embedded Protocols Lab
+description: 임베디드 시스템 하드웨어 통신 프로토콜 이론 정리 및 실습 웹사이트
+template: splash
+hero:
+  tagline: 이론으로 깊게 파고들고, 코드로 직접 구현해보는 임베디드 하드웨어 통신 & 프로토콜 기술 아카이브
+  actions:
+    - text: 프로토콜 이론 학습하기
+      link: /theory/01-serial-fundamentals/
+      icon: right-arrow
+      variant: primary
+    - text: 실습 랩 (Hands-on Labs)
+      link: /labs/01-uart-ring-buffer/
+      icon: puzzle
+      variant: secondary
+    - text: GitHub 저장소 보기
+      link: https://github.com/DongwanRoh/embedded-protocols
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## 🚀 무엇을 배우고 정리하나요?
+
+<CardGrid stagger>
+  <Card title="UART / USART" icon="laptop">
+    비동기 시리얼 통신, 8-N-1 프레임 구조, 하드웨어 플로우 제어(RTS/CTS), 그리고 MCU 인터럽트/DMA 및 링버퍼(Ring Buffer) 수신 기법.
+  </Card>
+  <Card title="I2C Protocol" icon="seti:html">
+    SDA/SCL 2선식 버스, 오픈 드레인 & 풀업 저항 원리, 7/10비트 주소 체계, START/STOP 조건 및 ACK/NACK 핸드셰이킹.
+  </Card>
+  <Card title="SPI Protocol" icon="rocket">
+    MOSI/MISO/SCK/CS 4-Wire 고속 전이중 통신, CPOL & CPHA 4가지 모드, 칩 셀렉트 및 Flash 메모리 명령어 제어.
+  </Card>
+  <Card title="CAN & Industrial" icon="setting">
+    차량용/산업용 CAN Bus 차동 신호, 비트 단위 비파괴 중재(Arbitration), Modbus-RTU, RS-485 및 IoT 무선 프로토콜.
+  </Card>
+</CardGrid>

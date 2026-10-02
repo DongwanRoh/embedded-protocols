@@ -1,3 +1,7 @@
+# Astro
+.astro/
+dist/
+
 # C / C++ & Embedded Compilers / IDEs
 *.o
 *.obj
@@ -40,3 +44,4 @@ env/
 Thumbs.db
 *.tmp
 *.log
+node_modules
